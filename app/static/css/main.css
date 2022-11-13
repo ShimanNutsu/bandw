@@ -1,0 +1,11 @@
+ul {
+    line-height: 1.8;
+    margin-left: -40px;
+    list-style-position: none;
+  }
+
+form {
+    font-size: 150%;
+    text-align: left;
+    padding-left: 50%;
+}

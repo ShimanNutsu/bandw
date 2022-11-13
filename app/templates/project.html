@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <form action="" method="post">
+        <div> Runs: </div>
+
+        {% for run in runs %}
+            {% if run in checked %}
+                <input type="checkbox" id={{ run }} name="hello" value={{ run }} checked>
+            {% else %}
+                <input type="checkbox" id={{ run }} name="hello" value={{ run }}>
+            {% endif %}
+            <label for={{ run }}> {{ run }} </label><br>
+        {% endfor %}
+
+        <input type="submit" value="Apply">
+    </form>
+
+    <div style="text-align: center;"> <img src="../static/images/plots.png"> </div>
+
+{% endblock %}

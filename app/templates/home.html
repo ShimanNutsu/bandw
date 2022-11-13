@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1> Projects </h1>
+
+<ul>
+    {% for name in names %}
+    <li> <a href={{ url_for("project", project=name) }}>{{ name }}</a></li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

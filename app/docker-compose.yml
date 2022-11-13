@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "8080:8080"
+    volumes:
+     - .:/code
+    networks:
+      - redis-net
+    command: python routes.py
+     
+  redis:
+    image: redis
+    hostname: redishost
+    networks:
+      - redis-net
+
+networks:
+  redis-net:
+    external: true
