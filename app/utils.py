@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 
 def get_project_names(db):
     keys = db.keys()
@@ -19,7 +20,7 @@ def make_image(db, project, runs):
         plt.clf()
         plt.savefig('static/images/plots.png')
         return
-        
+
     logs = []
     for run in runs:
         keys = db.keys(_make_name(project, run))
@@ -29,7 +30,8 @@ def make_image(db, project, runs):
     nrows = (len(logs) + 1) // 2
     
     plt.clf()
-    cmap = plt.cm.get_cmap('hsv', len(runs))
+    cmap = plt.get_cmap('plasma')
+    cmap_arr = cmap(np.linspace(0, 1, len(runs)))
     plt.figure(figsize=(15, 5 * nrows))
     for i, log in enumerate(logs):
         plt.subplot(nrows, 2, i + 1)
@@ -37,7 +39,7 @@ def make_image(db, project, runs):
         for j, run in enumerate(runs):
             values = list(map(int, db.lrange(_make_name(project, run, log), 0, -1)))
             if values != []:
-                plt.plot(values, label=run, c=cmap(j))
+                plt.plot(values, label=run, c=cmap_arr[j])
         plt.title(log)
         plt.legend()
     plt.savefig('static/images/plots.png')
