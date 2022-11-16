@@ -7,22 +7,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    #db = redis.StrictRedis(db=0, decode_responses=True)
-    print('+++++++++++++')
     names = get_project_names(app.db)
-    return render_template('home.html', the_title='Home page', names=names)
+    return render_template('home.html', names=names)
 
 @app.route('/project/<project>', methods=['GET', 'POST'])
 def project(project):
-    #db = redis.StrictRedis(db=0, decode_responses=True)
     runs = get_runs(app.db, project)
     if request.method == 'GET':
         make_image(app.db, project, runs)
-        return render_template('project.html', the_title=project, runs=runs, checked=runs)
+        return render_template('project.html', runs=runs, checked=runs)
     elif request.method == 'POST':
         checked = request.form.getlist('hello')
         make_image(app.db, project, checked)
-        return render_template('project.html', the_title=project, runs=runs, checked=checked)
+        return render_template('project.html', runs=runs, checked=checked)
 
 if __name__ == '__main__':
     app.db = redis.StrictRedis(db=0, host='redishost', decode_responses=True)

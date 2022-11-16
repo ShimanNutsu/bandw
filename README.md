@@ -22,12 +22,20 @@ These commands create network for access to redis database and start the server.
 
 Folder `examples` contains a simple example which logs random values.
 
-To run example run following commands from the root of the repository:
+To run examples run following commands from the root of the repository:
 
+For random logger:
 ```
-docker build -f examples/Dockerfile -t bandw_example .
-docker run --net redis-net bandw_example
+docker build -f examples/random_logger/Dockerfile -t random_example .
+docker run --net redis-net random_example python main.py
 ```
+
+For simple conv net trainig with logging:
+```
+docker build -f examples/simple_cnn/Dockerfile -t simple_cnn .
+docker run --net redis-net simple_cnn python main.py
+```
+(Code for this example was stolen from github.com/pytorch/examples/tree/main/mnist)
 
 To use bandw one has to put the command below into Dockerfile because bandw is not a pip package:
 
@@ -37,4 +45,4 @@ COPY bandw bandw
 
 ### Web page
 
-The plots of logs can be accesed at `0.0.0.0:8080`
+The plots of logs can be accessed at `0.0.0.0:8080`

@@ -37,7 +37,7 @@ def make_image(db, project, runs):
         plt.subplot(nrows, 2, i + 1)
         plt.tight_layout()
         for j, run in enumerate(runs):
-            values = list(map(int, db.lrange(_make_name(project, run, log), 0, -1)))
+            values = list(map(float, db.lrange(_make_name(project, run, log), 0, -1)))
             if values != []:
                 plt.plot(values, label=run, c=cmap_arr[j])
         plt.title(log)
