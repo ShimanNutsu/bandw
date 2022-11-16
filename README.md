@@ -20,7 +20,7 @@ These commands create network for access to redis database and start the server.
 
 ### Loging
 
-Folder `examples` contains a simple example which logs random values.
+Folder `examples` contains a some examples using bandw.
 
 To run examples run following commands from the root of the repository:
 
